@@ -57,4 +57,9 @@ function game () {
   console.log(winnerMessage)
 }
 
-game()
+const buttons = Array.from(document.querySelectorAll('button'));
+buttons.forEach(button => button.addEventListener('click', () => playRound(button.textContent,computerPlay())));
+
+
+
+
