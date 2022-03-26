@@ -1,5 +1,8 @@
 //A console-based version of the classic game Rock, Paper, Scissors
 
+const startupMessage = "The computer challenges you to a game of Rock, Paper, Scissors! First to 5 wins!";
+alert(startupMessage);
+
 //Function to randomly select computer play
 function computerPlay () {
   let randomChoice = Math.floor(Math.random() * 3);
