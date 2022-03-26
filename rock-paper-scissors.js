@@ -39,7 +39,8 @@ function playRound (playerSelection, computerSelection) {
   return output;
 }
 
-//Function for the whole game
+//An old function for the whole game. Leaving for records, but this is now deprecated and not useful
+/*
 function game () {
   const playerMovePrompt = "Your move. You may choose rock, paper, or scissors.";
   console.log("Welcome to Rock, Paper, Scissors! You'll be playing against the computer in a five-round format.\n")
@@ -63,7 +64,9 @@ function game () {
   }
   console.log(winnerMessage)
 }
+*/
 
+//A function to play the entire game
 function playGame () {
   let playerScore = 0;
   let computerScore = 0;
@@ -81,9 +84,10 @@ function playGame () {
       computer.textContent = `Computer: ${computerScore}`;
     }; 
     if (playerScore === 5 || computerScore === 5) {
-      const winner = (playerScore > computerScore) ? "You won! Feel good about yourself." : "You lost to a completely randomized algorithm. No judgement";
+      alert("We have a winner!");
+      const winnerMessage = (playerScore > computerScore) ? "You won! Feel good about yourself." : "You lost to a completely randomized algorithm. No judgement.";
       const statusMessage = document.querySelector('.message');
-      statusMessage.textContent = winner;
+      statusMessage.textContent = winnerMessage;
       return;
     };
   }));
@@ -92,5 +96,4 @@ function playGame () {
 playGame();
 
 
-
-
+//If I were to continue this project, I would remove the event listeners from the buttons.
