@@ -21,14 +21,21 @@ function playRound (playerSelection, computerSelection) {
     message = "It's a tie!";
     output = null;
   } else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
-    message = `You win! ${playerSelection} beats ${computerSelection}`;
+    playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
+    computerSelection = computerSelection[0].toUpperCase() + computerSelection.substring(1);
+    message = `${playerSelection} beats ${computerSelection}. You won the round!`;
     output = true;
   } else {
-    message = `You lose! ${computerSelection} beats ${playerSelection}`;
+    playerSelection = playerSelection[0].toUpperCase() + playerSelection.substring(1);
+    computerSelection = computerSelection[0].toUpperCase() + computerSelection.substring(1);
+    message = `${computerSelection} beats ${playerSelection}. You lost the round!`;
     output = false;
   }
 
-  console.log(message)
+  //console.log(message)
+  const statusMessage = document.querySelector('.message');
+  statusMessage.textContent = message;
+
   return output;
 }
 
@@ -57,8 +64,32 @@ function game () {
   console.log(winnerMessage)
 }
 
-const buttons = Array.from(document.querySelectorAll('button'));
-buttons.forEach(button => button.addEventListener('click', () => playRound(button.textContent,computerPlay())));
+function playGame () {
+  let playerScore = 0;
+  let computerScore = 0;
+  const player = document.querySelector('#player');
+  const computer = document.querySelector('#computer');
+  
+  const buttons = Array.from(document.querySelectorAll('button'));
+  buttons.forEach(button => button.addEventListener('click', () => {
+    let result = playRound(button.textContent,computerPlay());
+    if (result === true) {
+      playerScore++;
+      player.textContent = `Player: ${playerScore}`;    
+    } else if (result === false) {
+      computerScore++;
+      computer.textContent = `Computer: ${computerScore}`;
+    }; 
+    if (playerScore === 5 || computerScore === 5) {
+      const winner = (playerScore > computerScore) ? "You won! Feel good about yourself." : "You lost to a completely randomized algorithm. No judgement";
+      const statusMessage = document.querySelector('.message');
+      statusMessage.textContent = winner;
+      return;
+    };
+  }));
+}
+
+playGame();
 
 
 
