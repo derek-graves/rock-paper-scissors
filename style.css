@@ -10,9 +10,22 @@ body,html {
   font-family: sans-serif;
 }
 
+.scoreboard {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.score {
+  color: white;
+  background-color: black;
+}
+
 .choices {
   display: flex;
   flex: 1;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   gap: 24px;
